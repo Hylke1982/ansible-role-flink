@@ -4,4 +4,4 @@ flink_home: /opt/flink
 flink_version: 1.4.0
 flink_file_prefix: "flink-{{flink_version}}-bin-scala_2.11"
 flink_link: "http://mirrors.supportex.net/apache/flink/flink-{{flink_version}}/{{flink_file_prefix}}.tgz"
-flink_app_home: "flink_home/app"
+flink_app_home: "{{flink_home}}/app"
