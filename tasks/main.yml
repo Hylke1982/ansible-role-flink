@@ -1,0 +1,36 @@
+- name: "Create Flink group"
+  group:
+    name: "{{ flink_group }}"
+  become: true
+
+- name: "Create Flink user"
+  user:
+    name: "{{ flink_user }}"
+    comment: "John Doe"
+    group: "{{ flink_group }}"
+    home: "{{ flink_home }}"
+  become: true
+
+- name: "Install Java"
+  package:
+    name: "openjdk-8-jdk-headless"
+    state: "latest"
+  become: true
+
+- name: "Download Flink and unarchive"
+  unarchive:
+    src: "{{ flink_link }}"
+    dest: "{{ flink_home }}"
+    remote_src: yes
+    owner: "{{ flink_user }}"
+    group: "{{ flink_group }}"
+  become: true
+
+- name: "Create symlink in Flink home directory"
+  file:
+    src: "{{ flink_home }}/{{ flink_file_prefix }}"
+    dest: "{{ flink_app_home }}"
+    owner: "{{ flink_user }}"
+    group: "{{ flink_group }}"
+    state: link
+  become: true
