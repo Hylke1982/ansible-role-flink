@@ -28,7 +28,7 @@
 
 - name: "Create symlink in Flink home directory"
   file:
-    src: "{{ flink_home }}/{{ flink_file_prefix }}"
+    src: "{{ flink_home }}/flink-{{flink_version}}"
     dest: "{{ flink_app_home }}"
     owner: "{{ flink_user }}"
     group: "{{ flink_group }}"
